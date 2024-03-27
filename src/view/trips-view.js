@@ -1,33 +1,42 @@
 import {createElement} from '../render.js';
+import { countDuration, humanizeTaskDueDate } from '../util.js';
+import {DATE_FORMAT_POINT_DAY, DATE_FORMAT_POINT_HOURS } from '../const.js';
 
-function createTripsTemplate() {
+const createOffer = ({title, cost}) =>
+  `
+  <li class="event__offer">
+    <span class="event__offer-title">${title}</span>
+    +€&nbsp;
+    <span class="event__offer-price">${cost}</span>
+  </li>
+  `;
+
+const createOffers = (offers) => Array.from(offers, createOffer);
+
+function createTripsTemplate({type, destination, cost, date, offers}) {
   return (
     `
     <li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="2019-03-18">MAR 18</time>
+        <time class="event__date" datetime="${date.start}">${humanizeTaskDueDate(date.start, DATE_FORMAT_POINT_DAY)}</time>
         <div class="event__type">
-          <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
+          <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
         </div>
-        <h3 class="event__title">Taxi Amsterdam</h3>
+        <h3 class="event__title">${type} ${destination}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+            <time class="event__start-time" datetime="${date.start}">${humanizeTaskDueDate(date.start, DATE_FORMAT_POINT_HOURS)}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+            <time class="event__end-time" datetime="${date.start}">${humanizeTaskDueDate(date.end, DATE_FORMAT_POINT_HOURS)}</time>
           </p>
-          <p class="event__duration">30M</p>
+          <p class="event__duration">${countDuration(date.start, date.end)}</p>
         </div>
         <p class="event__price">
-          &euro;&nbsp;<span class="event__price-value">20</span>
+          &euro;&nbsp;<span class="event__price-value">${cost}</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
-          <li class="event__offer">
-            <span class="event__offer-title">Order Uber</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">20</span>
-          </li>
+          ${createOffers(offers)}
         </ul>
         <button class="event__favorite-btn event__favorite-btn--active" type="button">
           <span class="visually-hidden">Add to favorite</span>
@@ -45,8 +54,13 @@ function createTripsTemplate() {
 }
 
 export default class TripsView {
+
+  constructor(point) {
+    this.point = point;
+  }
+
   getTemplate() {
-    return createTripsTemplate();
+    return createTripsTemplate(this.point);
   }
 
   getElement() {
