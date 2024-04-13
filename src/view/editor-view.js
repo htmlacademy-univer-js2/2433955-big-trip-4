@@ -10,8 +10,8 @@ const createPicture = (picture) =>
 
 const createPictures = (photosSrc) => Array.from(photosSrc, createPicture);
 
-function createEditorView({type, destination, cost, date, description, photosSrc}) {
-  return (
+const createEditorView = ({type, destination, cost, date, description, photosSrc}) =>
+  (
     `
     <li><form class="event event--edit" action="#" method="post">
     <header class="event__header">
@@ -124,7 +124,6 @@ function createEditorView({type, destination, cost, date, description, photosSrc
     </form>
     </li>`
   );
-}
 
 export default class EditorView extends AbstractView {
   #editClick;
