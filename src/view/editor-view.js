@@ -1,7 +1,7 @@
 import { DATE_FORMAT_EDIT } from '../const.js';
-import {createElement} from '../render.js';
 import { humanizeTaskDueDate } from '../util.js';
 import { BLANC_TEST } from '../const.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 const createPicture = (picture) =>
   `
@@ -10,7 +10,7 @@ const createPicture = (picture) =>
 
 const createPictures = (photosSrc) => Array.from(photosSrc, createPicture);
 
-function createEventEditor({type, destination, cost, date, desctiption, photosSrc}) {
+function createEditorView({type, destination, cost, date, description, photosSrc}) {
   return (
     `
     <li><form class="event event--edit" action="#" method="post">
@@ -112,7 +112,7 @@ function createEventEditor({type, destination, cost, date, desctiption, photosSr
 
       <section class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-        <p class="event__destination-description">${desctiption}</p>
+        <p class="event__destination-description">${description}</p>
 
         <div class="event__photos-container">
           <div class="event__photos-tape">
@@ -126,30 +126,27 @@ function createEventEditor({type, destination, cost, date, desctiption, photosSr
   );
 }
 
-export default class EventEditor {
+export default class EditorView extends AbstractView {
+  #editClick;
+  #point;
 
-  constructor(newPoint) {
-    if(newPoint){
-      this.point = newPoint;
-    }
-    else{
-      this.point = BLANC_TEST;
-    }
+  constructor({point = BLANC_TEST, onEditClick}) {
+    super();
+    this.#point = point;
+    this.#editClick = onEditClick;
+
+    this.element
+      .addEventListener('submit', this.#editClickHandler);
+    this.element
+      .addEventListener('reset', this.#editClickHandler);
   }
 
-  getTemplate() {
-    return createEventEditor(this.point);
+  get template() {
+    return createEditorView(this.#point);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#editClick();
+  };
 }

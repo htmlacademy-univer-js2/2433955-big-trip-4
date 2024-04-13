@@ -1,6 +1,6 @@
-import {createElement} from '../render.js';
 import { countDuration, humanizeTaskDueDate } from '../util.js';
 import {DATE_FORMAT_POINT_DAY, DATE_FORMAT_POINT_HOURS } from '../const.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 const createOffer = ({title, cost}) =>
   `
@@ -53,25 +53,24 @@ function createTripsTemplate({type, destination, cost, date, offers}) {
   );
 }
 
-export default class TripsView {
+export default class TripsView extends AbstractView {
+  #point;
+  #tripClick;
 
-  constructor(point) {
-    this.point = point;
+  constructor({point, onTripClick}) {
+    super();
+    this.#point = point;
+    this.#tripClick = onTripClick;
+
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
-  getTemplate() {
-    return createTripsTemplate(this.point);
+  get template() {
+    return createTripsTemplate(this.#point);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#tripClick();
+  };
 }
