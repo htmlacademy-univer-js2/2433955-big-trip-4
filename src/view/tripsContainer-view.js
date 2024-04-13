@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 function createTripsContainer() {
   return (
@@ -8,20 +8,8 @@ function createTripsContainer() {
   );
 }
 
-export default class TripsContainer {
-  getTemplate() {
+export default class TripsContainer extends AbstractView {
+  get template() {
     return createTripsContainer();
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }
