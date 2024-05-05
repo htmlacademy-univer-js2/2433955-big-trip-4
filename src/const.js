@@ -18,6 +18,21 @@ const destinations = [
   'Luxembourg',
 ];
 
+const dates = [
+  {
+    start: new Date(Date.UTC(2024, 5, 11, 8, 15, 0, 0)),
+    end: new Date(Date.UTC(2024, 5, 11, 10, 15, 0, 0))
+  },
+  {
+    start: new Date(Date.UTC(2024, 3, 1, 18, 30, 10, 0)),
+    end: new Date(Date.UTC(2024, 3, 1, 20, 30, 10, 0))
+  },
+  {
+    start: new Date(Date.UTC(2024, 8, 11, 12, 0, 0, 0)),
+    end: new Date(Date.UTC(2024, 8, 11, 14, 0, 0, 0))
+  },
+];
+
 const BLANC_TEST =
 {
   type: null,
@@ -30,7 +45,7 @@ const BLANC_TEST =
   offers: [
 
   ],
-  desctiption:'',
+  description:'',
   photosSrc: []
 };
 
@@ -43,5 +58,10 @@ const MAX_PRICE = 2000;
 const MAX_OFFER_ID = 5;
 const POINTS_COUNT = 12;
 
+const PresenterModes = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
+};
+
 export {pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
-  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT};
+  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates, PresenterModes};

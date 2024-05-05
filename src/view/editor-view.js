@@ -53,7 +53,7 @@ const createEditorView = ({type, destination, cost, date, description, photosSrc
 
             <div class="event__type-item">
               <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" checked>
-              <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">${type}</label>
+              <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">Flight</label>
             </div>
 
             <div class="event__type-item">
@@ -76,7 +76,7 @@ const createEditorView = ({type, destination, cost, date, description, photosSrc
 
       <div class="event__field-group  event__field-group--destination">
         <label class="event__label  event__type-output" for="event-destination-1">
-          Flight
+          ${type}
         </label>
         <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destination}" list="destination-list-1">
         <datalist id="destination-list-1">
@@ -90,7 +90,7 @@ const createEditorView = ({type, destination, cost, date, description, photosSrc
         <label class="visually-hidden" for="event-start-time-1">From</label>
         <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${humanizeTaskDueDate(date.start, DATE_FORMAT_EDIT)}">
         &mdash;
-        <label class="visually-hidden" for="event-end-time-1">To</label>
+        <label claыss="visually-hidden" for="event-end-time-1">To</label>
         <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${humanizeTaskDueDate(date.end, DATE_FORMAT_EDIT)}">
       </div>
 
@@ -108,6 +108,7 @@ const createEditorView = ({type, destination, cost, date, description, photosSrc
     <section class="event__details">
       <section class="event__section  event__section--offers">
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
+
       </section>
 
       <section class="event__section  event__section--destination">
@@ -124,14 +125,13 @@ const createEditorView = ({type, destination, cost, date, description, photosSrc
     </form>
     </li>`
   );
-
-export default class EditorView extends AbstractView {
+export default class EditorView extends AbstractView{
   #editClick;
   #point;
-
   constructor({point = BLANC_TEST, onEditClick}) {
     super();
     this.#point = point;
+
     this.#editClick = onEditClick;
 
     this.element
@@ -146,6 +146,6 @@ export default class EditorView extends AbstractView {
 
   #editClickHandler = (evt) => {
     evt.preventDefault();
-    this.#editClick();
+    this.#editClick(this.#point);
   };
 }
