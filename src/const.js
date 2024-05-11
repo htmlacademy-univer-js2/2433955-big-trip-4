@@ -63,5 +63,13 @@ const PresenterModes = {
   EDITING: 'EDITING',
 };
 
+const SortTypes = {
+  DEFAULT: 'default',
+  BY_PRICE: 'price',
+  BY_TIME: 'time',
+  BY_OFFERS: 'offers',
+  BY_NAME: 'name',
+};
+
 export {pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
-  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates, PresenterModes};
+  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates, PresenterModes, SortTypes};
