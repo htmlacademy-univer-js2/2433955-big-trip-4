@@ -42,11 +42,11 @@ const BLANC_TEST =
     start: null,
     end: null,
   },
-  offers: [
-
-  ],
+  offers: {
+    id: 0
+  },
   description:'',
-  photosSrc: []
+  photosSrc: ['https://loremflickr.com/248/152?random=$0)']
 };
 
 const DATE_FORMAT_EDIT = 'DD/MM/YY hh:mm';
@@ -71,5 +71,12 @@ const SortTypes = {
   BY_NAME: 'name',
 };
 
-export {pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
+const FilterTypes = {
+  ALL: 'everything',
+  FUTURE: 'future',
+  PRESENT: 'present',
+  PAST: 'past',
+};
+
+export { FilterTypes, pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
   DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates, PresenterModes, SortTypes};
