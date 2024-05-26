@@ -21,15 +21,15 @@ const destinations = [
 const dates = [
   {
     start: new Date(Date.UTC(2024, 5, 11, 8, 15, 0, 0)),
-    end: new Date(Date.UTC(2024, 5, 11, 10, 15, 0, 0))
+    end: new Date(Date.UTC(2024, 5, 12, 10, 15, 0, 0))
   },
   {
     start: new Date(Date.UTC(2024, 3, 1, 18, 30, 10, 0)),
-    end: new Date(Date.UTC(2024, 3, 1, 20, 30, 10, 0))
+    end: new Date(Date.UTC(2024, 3, 3, 20, 30, 10, 0))
   },
   {
     start: new Date(Date.UTC(2024, 8, 11, 12, 0, 0, 0)),
-    end: new Date(Date.UTC(2024, 8, 11, 14, 0, 0, 0))
+    end: new Date(Date.UTC(2024, 8, 14, 14, 0, 0, 0))
   },
 ];
 
