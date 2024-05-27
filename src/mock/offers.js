@@ -1,19 +1,18 @@
 import { getRandomInt } from '../util';
-import { MAX_PRICE } from '../const';
 
 const Offers = {
   0:[
     {
       text:'Kontsert Death Grips v Miasse',
-      cost: getRandomInt(MAX_PRICE),
+      cost: getRandomInt(100),
       name:'event-offer-test',
       checked: false,
     }
   ],
   1: [
     {
-      text: 'Rent a car ',
-      cost: getRandomInt(MAX_PRICE),
+      text: 'Rent a car',
+      cost: getRandomInt(100),
       name: 'event-offer-rent',
       checked: false,
     }
@@ -21,21 +20,21 @@ const Offers = {
   2:[
     {
       text: 'Add luggage',
-      cost: getRandomInt(MAX_PRICE),
+      cost: getRandomInt(100),
       name: 'event-offer-luggage',
       checked: false,
     },
     {
       text:'Switch to comfort',
-      cost: getRandomInt(MAX_PRICE),
+      cost: getRandomInt(100),
       name: 'event-offer-comfort',
       checked: false,
     },
   ],
   3:[
     {
-      text:'Add breakfast ',
-      cost: getRandomInt(MAX_PRICE),
+      text:'Add breakfast',
+      cost: getRandomInt(100),
       name: 'event-offer-breakfast',
       checked: false,
     },
@@ -58,6 +57,5 @@ const getOffersId = (type) => {
     }
   }
 };
-
 
 export {Offers, getOffersId};

@@ -8,6 +8,8 @@ const humanizeTaskDueDate = (dueDate, format) => dueDate ? dayjs(dueDate).format
 
 const countDuration = (dateStart, dateEnd) => dayjs(dateEnd).diff(dateStart, 'm');
 
+const isEscKey = (evt) => evt.key === ('Escape');
+
 const updateItem = (items, update) => {
   const updatedItems = items.map((item) => (item.id === update.id ? update : item));
   return updatedItems;
@@ -42,16 +44,33 @@ const sortByEvent = (point1, point2) =>
 const sortByPrice = (point1, point2) =>
   point2.cost - point1.cost;
 
-const sortByOffers = (point1, point2) =>
-  point2.offers.length - point1.offers.length();
+const sortByOffers = (point1, point2) => {
+  const countCheckedOffers = (activeOffers) =>
+    activeOffers.filter((offer) => offer.checked).length;
+
+  return countCheckedOffers(point2.activeOffers) - countCheckedOffers(point1.activeOffers);
+};
 
 const sortByDefault = (point1, point2) => {
-
   const weight = getWeightForNullDate(point1.date.start, point2.date.start);
 
   return weight ?? dayjs(point1.date.start).diff(dayjs(point2.date.start));
-
 };
 
-export {getRandomArrayElement, humanizeTaskDueDate, countDuration, getRandomInt, updateItem,
-  sortByDefault, sortByEvent, sortByOffers, sortByPrice, sortByTime};
+const isPointPresent = (point) => {
+  const now = dayjs();
+  return (
+    dayjs(point.date.start).isSame(now) ||
+    (dayjs(point.date.start).isBefore(now) && dayjs(point.date.end).isAfter(now))
+  );
+};
+
+const filter = {
+  'everything': (data) => [...data],
+  'future': (data) => data.filter((point) => dayjs(point.date.start).isAfter(dayjs())),
+  'present': (data) => data.filter(isPointPresent),
+  'past': (data) => data.filter((point) => dayjs(point.date.end).isBefore(dayjs())),
+};
+
+export { getRandomArrayElement, humanizeTaskDueDate, countDuration, getRandomInt, updateItem,
+  sortByDefault, sortByEvent, sortByOffers, sortByPrice, sortByTime, isEscKey, filter };

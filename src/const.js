@@ -1,3 +1,6 @@
+import { Offers, getOffersId } from './mock/offers';
+import { getRandomArrayElement } from './util';
+
 const pointTypes = [
   'Taxi',
   'Bus',
@@ -35,8 +38,8 @@ const dates = [
 
 const BLANC_TEST =
 {
-  type: null,
-  destination: null,
+  type: getRandomArrayElement(pointTypes),
+  destination: getRandomArrayElement(destinations),
   cost: 0,
   date: {
     start: null,
@@ -45,6 +48,8 @@ const BLANC_TEST =
   offers: {
     id: 0
   },
+  activeOffers:
+    Offers[getOffersId('default')],
   description:'',
   photosSrc: ['https://loremflickr.com/248/152?random=$0)']
 };
@@ -56,7 +61,7 @@ const DATE_FORMAT_POINT_HOURS = 'hh-mm';
 const PHOTOS_COUNT = 20;
 const MAX_PRICE = 2000;
 const MAX_OFFER_ID = 5;
-const POINTS_COUNT = 12;
+const POINTS_COUNT = 4;
 
 const PresenterModes = {
   DEFAULT: 'DEFAULT',
@@ -78,5 +83,18 @@ const FilterTypes = {
   PAST: 'past',
 };
 
-export { FilterTypes, pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
-  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates, PresenterModes, SortTypes};
+const UserActions = {
+  UPDATE_POINT: 'update',
+  ADD_POINT: 'add',
+  DELETE_POINT: 'delete',
+};
+
+const UpdateTypes = {
+  PATCH: 'PATCH',
+  MINOR: 'MINOR',
+  MAJOR: 'MAJOR',
+};
+
+export { pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
+  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates,
+  PresenterModes, SortTypes, FilterTypes, UpdateTypes, UserActions};
