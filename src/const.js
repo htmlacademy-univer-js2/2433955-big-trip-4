@@ -1,56 +1,15 @@
-import { Offers, getOffersId } from './mock/offers';
-import { getRandomArrayElement } from './util';
-
-const pointTypes = [
-  'Taxi',
-  'Bus',
-  'Train',
-  'Ship',
-  'Drive',
-  'Flight',
-  'Check-in',
-  'Sightseeing',
-  'Restaurant'
-];
-
-const destinations = [
-  'Miass',
-  'Chelyabinsk',
-  'Amsterdam',
-  'Prague',
-  'Luxembourg',
-];
-
-const dates = [
-  {
-    start: new Date(Date.UTC(2024, 5, 11, 8, 15, 0, 0)),
-    end: new Date(Date.UTC(2024, 5, 12, 10, 15, 0, 0))
-  },
-  {
-    start: new Date(Date.UTC(2024, 3, 1, 18, 30, 10, 0)),
-    end: new Date(Date.UTC(2024, 3, 3, 20, 30, 10, 0))
-  },
-  {
-    start: new Date(Date.UTC(2024, 8, 11, 12, 0, 0, 0)),
-    end: new Date(Date.UTC(2024, 8, 14, 14, 0, 0, 0))
-  },
-];
-
 const BLANC_TEST =
 {
-  type: getRandomArrayElement(pointTypes),
-  destination: getRandomArrayElement(destinations),
+  type: 'bus',
+  destination: null,
   cost: 0,
   date: {
     start: null,
     end: null,
   },
-  offers: {
-    id: 0
-  },
-  activeOffers:
-    Offers[getOffersId('default')],
-  description:'',
+  offers: [],
+  activeOffers: 0,
+  description: '',
   photosSrc: ['https://loremflickr.com/248/152?random=$0)']
 };
 
@@ -72,8 +31,6 @@ const SortTypes = {
   DEFAULT: 'default',
   BY_PRICE: 'price',
   BY_TIME: 'time',
-  BY_OFFERS: 'offers',
-  BY_NAME: 'name',
 };
 
 const FilterTypes = {
@@ -93,8 +50,12 @@ const UpdateTypes = {
   PATCH: 'PATCH',
   MINOR: 'MINOR',
   MAJOR: 'MAJOR',
+  INIT: 'INIT',
 };
 
-export { pointTypes, destinations, BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
-  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT, dates,
-  PresenterModes, SortTypes, FilterTypes, UpdateTypes, UserActions};
+const AUTHORIZATION = 'Basic kol8af7o4q2xe74';
+const END_POINT = 'https://21.objects.htmlacademy.pro/big-trip';
+
+export { BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,
+  DATE_FORMAT_POINT_HOURS, PHOTOS_COUNT, MAX_PRICE, MAX_OFFER_ID, POINTS_COUNT,
+  PresenterModes, SortTypes, FilterTypes, UpdateTypes, UserActions, AUTHORIZATION, END_POINT };

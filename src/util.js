@@ -44,13 +44,6 @@ const sortByEvent = (point1, point2) =>
 const sortByPrice = (point1, point2) =>
   point2.cost - point1.cost;
 
-const sortByOffers = (point1, point2) => {
-  const countCheckedOffers = (activeOffers) =>
-    activeOffers.filter((offer) => offer.checked).length;
-
-  return countCheckedOffers(point2.activeOffers) - countCheckedOffers(point1.activeOffers);
-};
-
 const sortByDefault = (point1, point2) => {
   const weight = getWeightForNullDate(point1.date.start, point2.date.start);
 
@@ -73,4 +66,4 @@ const filter = {
 };
 
 export { getRandomArrayElement, humanizeTaskDueDate, countDuration, getRandomInt, updateItem,
-  sortByDefault, sortByEvent, sortByOffers, sortByPrice, sortByTime, isEscKey, filter };
+  sortByDefault, sortByEvent, sortByPrice, sortByTime, isEscKey, filter };

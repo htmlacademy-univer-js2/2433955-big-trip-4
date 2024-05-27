@@ -1,10 +1,10 @@
 import { FilterTypes } from '../const';
 import Observable from '../framework/observable';
 
-export default class FiltersModel extends Observable{
+export default class FiltersModel extends Observable {
   #filter = FilterTypes.ALL;
 
-  get filter(){
+  get filter() {
     return this.#filter;
   }
 
