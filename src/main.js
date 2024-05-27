@@ -42,3 +42,4 @@ const presenter = new Presenter (
 presenter.init();
 
 // я доделаю ;(
+// обязательно...
