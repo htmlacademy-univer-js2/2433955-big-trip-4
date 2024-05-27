@@ -1,4 +1,4 @@
-import {remove, render} from '../framework/render.js';
+import {remove, render, RenderPosition} from '../framework/render.js';
 import EditorView from '../view/editor-view.js';
 import {nanoid} from 'nanoid';
 import {UserActions, UpdateTypes} from '../const.js';
@@ -10,11 +10,16 @@ export default class NewPointPresenter {
   #onDestroy = null;
 
   #editorComponent = null;
+  #offers;
+  #destinations;
 
-  constructor({pointsContainer, onDataChange, onDestroy}) {
+  constructor({pointsContainer, onDataChange, onDestroy, allOffers, allDestinations}) {
     this.#pointsContainer = pointsContainer;
     this.#onDataChange = onDataChange;
     this.#onDestroy = onDestroy;
+
+    this.#offers = allOffers;
+    this.#destinations = allDestinations;
   }
 
   init() {
@@ -22,13 +27,14 @@ export default class NewPointPresenter {
       return;
     }
 
-
-    this.#editorComponent = new EditorView({
+    this.#editorComponent = new EditorView ({
+      allOffers: this.#offers,
+      allDestinations: this.#destinations,
       onSubmit: this.#handleFormSubmit,
       deletePoint: this.#handleDeleteClick
     });
 
-    render(this.#editorComponent, this.#pointsContainer);
+    render(this.#editorComponent, this.#pointsContainer, RenderPosition.AFTERBEGIN);
 
     document.addEventListener('keydown', this.#escKeyDownHandler);
   }
@@ -50,6 +56,7 @@ export default class NewPointPresenter {
     if(point === undefined){
       return;
     }
+
     this.#onDataChange(
       UserActions.ADD_POINT,
       UpdateTypes.MINOR,
