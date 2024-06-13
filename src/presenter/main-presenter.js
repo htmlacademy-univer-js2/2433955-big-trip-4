@@ -227,6 +227,11 @@ export default class Presenter extends Observable {
       return;
     }
 
+    if (!this.points.length) {
+      this.#renderEmptyPoints();
+      return;
+    }
+
     if (this.#isError) {
       this.#renderErrorPoints();
     } else {
@@ -236,6 +241,7 @@ export default class Presenter extends Observable {
     }
 
     this.#renderSort();
+    this.#renderPointsContainer();
     this.#initPoints();
     this.#tripInfoPresenter.init(this.points);
     this.#renderPoints(this.points);

@@ -3,10 +3,10 @@ import { DATE_FORMAT_POINT_DAY, DATE_FORMAT_POINT_HOURS } from '../const.js';
 import AbstractView from '../framework/view/abstract-view.js';
 
 const createOffersTemplate = (offers, offersData) => {
-  let res = '';
+  let offersTemplate = '';
   offers.forEach((offerId) => {
     const curOfferData = offersData.find(({id}) => id === offerId);
-    res += `
+    offersTemplate += `
     <li class="event__offer">
       <span class="event__offer-title">${curOfferData.title}</span>
       +€&nbsp;
@@ -14,7 +14,7 @@ const createOffersTemplate = (offers, offersData) => {
     </li>
     `;
   });
-  return res;
+  return offersTemplate;
 };
 
 
