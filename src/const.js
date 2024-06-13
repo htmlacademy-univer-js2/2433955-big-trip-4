@@ -63,7 +63,7 @@ const ApiMethods = {
   DELETE: 'DELETE',
 };
 
-const AUTHORIZATION = 'Basic kol8af7o4q2xe74';
+const AUTHORIZATION = 'Basic kol8af7o4q2xe77';
 const END_POINT = 'https://21.objects.htmlacademy.pro/big-trip';
 
 export { BLANC_TEST, DATE_FORMAT_EDIT, DATE_FORMAT_POINT_DAY,

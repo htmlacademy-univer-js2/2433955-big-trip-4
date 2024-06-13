@@ -52,7 +52,7 @@ const createDestinationsTemplate = (curType, curDestination, allDestinations, is
   </div>`;
 
 const createOfferEditTemplate = (currentTypeOffers, offers, isDisabled) => {
-  let res = '';
+  let offerEditTemplate = '';
 
   currentTypeOffers.forEach((offer) => {
     let isActive = false;
@@ -62,7 +62,7 @@ const createOfferEditTemplate = (currentTypeOffers, offers, isDisabled) => {
     else {
       return '';
     }
-    res += `
+    offerEditTemplate += `
     <div class="event__offer-selector">
       <input class="event__offer-checkbox  visually-hidden" id="${offer.id}-1" type="checkbox" name="${offer.id}" ${ isActive ? 'checked' : ''} ${isDisabled ? 'disabled' : ''}>
       <label class="event__offer-label" for="${offer.id}-1">
@@ -73,7 +73,7 @@ const createOfferEditTemplate = (currentTypeOffers, offers, isDisabled) => {
     </div>
     `;
   });
-  return res;
+  return offerEditTemplate;
 };
 
 
